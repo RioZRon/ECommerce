@@ -1,0 +1,81 @@
+.white_bg {
+	background: #fff;
+}
+
+.r {
+	text-align: right;
+}
+
+.bag-item-input {
+	width: 170px;
+	height: 22px;
+	padding: 5px 10px;
+	line-height: 22px;
+	background-color: #fff;
+	font-size: 14px;
+}
+
+.bag-item-input-focus {
+	border-color: #3ba9ff;
+}
+
+.bag-item-input:focus {
+	border-color: #3ba9ff;
+}
+
+.left_nav {
+	background: #fff;
+	padding: 5px;
+	color: #6e7d99;
+}
+
+.left_nav a {
+	color: #6e7d99;
+}
+
+.left_nav h2 {
+	font-size: 20px;
+	font-weight: normal;
+	padding-left: 25px;
+	background: url(../images/jia_icon.png) no-repeat center left;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.left_nav h2.havesub {
+	background-position: 0 7px;
+}
+.left_nav h2.havesub a{ text-decoration: none;}
+
+.left_nav h2.on {
+	background: url(../images/jia_icon.png) no-repeat center left;
+	color: #24a9e2;
+}
+
+.left_nav h2.show {
+	background: url(../images/jian_icon.png) no-repeat center left;
+}
+
+.sub2 {
+	margin-left: 35px;
+	display:none;
+}
+
+.sub2.show {
+	display:block ;
+}
+
+.sub2 h3 {
+	padding-left: 6px;
+	line-height: 25px;
+	cursor: pointer;
+	font-weight: normal;
+}
+
+.sub2 h3 li {
+	width: 140px;
+	overflow: hidden;
+	background: url(../images/adv_icon.gif) no-repeat center left;
+	text-indent: 15px;
+}

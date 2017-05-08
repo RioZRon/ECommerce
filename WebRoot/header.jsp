@@ -1,0 +1,172 @@
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<title>课程平台</title>
+
+</head>
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<script type="text/javascript">
+	function getMsg() {
+		$.post("isexists.action", {
+			"users" : $("#users").val()
+		}, function(msg) {
+			if (msg.trim() == 'yes') {
+				$('.userserror').html("用户名存在");
+			} else {
+				$('.userserror').html("账号不存在");
+			}
+		}, "Text");
+	}
+
+	function res() {
+		$("#form1")[0].reset();
+	}
+
+	function check() {
+		var users = $("#users").val();
+		var pwd = $("#pwd").val();
+		if (users.length == 0) {
+			$(".userserror").html("账号不能为空！");
+			return false;
+		} else {
+			$(".userserror").html("");
+		}
+		if (pwd.length == 0) {
+			$(".error").html("密码不能为空！");
+			return false;
+		} else {
+			$(".error").html("");
+			return true;
+		}
+	}
+
+	function sub() {
+		var bool = check();
+		if (bool == true) {
+			$.ajax({
+				async : false,
+				type : 'post',
+				url : "qtlogin.action",
+				data : $("#form1").serialize(),
+				dataType : "text",
+				success : function(data) {
+					if (data == "1") {
+						window.location.href = "zxindex";
+						if ($.browser.msie) {
+							// 此浏览器为 IE
+							window.location.href = "zxindex";
+						} else {
+							// 非 IE
+							window.location.href = "zxindex";
+						}
+					} else if (data == "2") {
+						$("#users").val("");
+						$("#pwd").val("");
+						$("#tishi").html("您的账号暂未审核通过，请向管理员申请！");
+					} else {
+						$("#users").val("");
+						$("#pwd").val("");
+						$("#tishi").html("登录失败,请重新登录！");
+					}
+				}
+			});
+		} else {
+			return false;
+		}
+	}
+
+	document.onkeydown = keyListener;
+	function keyListener(e) {
+		e = e ? e : event;
+		if (e.keyCode == 13) {
+			sub();
+		}
+	}
+</script>
+
+<body>
+	 <div class="head">
+		<div class="head_nav">
+			<div class="logo">
+				<a href="zindex"><img src="images/logo.png" /></a>
+			</div>
+			<div class="top_wrap_nr">
+				<ul>
+					<li>您好！欢迎进入南拓科技电子商务课程平台！</li>
+					<li class="fgx"></li>
+					<!-- <li>
+						<div class="login">
+							<a href="#" id="login_box_btn">登录</a>
+						</div>
+						<div class="registered">
+							<a href="../../paging/registered.html">注册</a>
+						</div>
+					</li>
+					<li class="fgx"></li>-->
+					<li><span class="tel">4008-520-538</span></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="i_dhlist">
+		<div class="i_dhdhz">
+			<div class="i_zdkc">
+				<ul>
+					<c:forEach var="list" items="${requestScope.list }">
+						<!-- <c:if test="${list.id!=1 && list.id!=2 && list.id!=3 && list.id!=4 && list.id!=38 && list.id!=39}">
+							<li><a id="${list.id}" href="${list.url}">${list.name}</a></li>
+						</c:if> -->
+						<c:if test="${list.id==2 }">
+							<li><a id="${list.id}" href="dnri.action?id=2">${list.name}</a></li>
+						</c:if>
+						<c:if test="${list.id==3 }">
+							<li><a id="${list.id}" href="course.jsp">${list.name}</a></li>
+						</c:if>
+						<c:if test="${list.id==4 }">
+							<li><a id="${list.id}" href="cross">${list.name}</a></li>
+						</c:if>
+						<c:if test="${list.id==38 }">
+							<li><a id="${list.id}" href="expand">${list.name}</a></li>
+						</c:if>
+						<c:if test="${list.id==39 }">
+							<li><a id="${list.id}" href="training">${list.name}</a></li>
+						</c:if>
+					</c:forEach>
+				</ul>
+			</div>
+			<div class="i_date">
+				当前日期：<span id="show"></span>
+			</div>
+			<script type="text/javascript">
+				window.onload = function() {
+					var show = document.getElementById("show");
+					setInterval(function() {
+						var time = new Date();
+						// 程序计时的月从0开始取值后+1
+						var m = time.getMonth() + 1;
+						var t = time.getFullYear() + "-" + m + "-"
+								+ time.getDate() + " " + time.getHours() + ":"
+								+ time.getMinutes() + ":" + time.getSeconds();
+						show.innerHTML = t;
+					}, 1000);
+				};
+			</script>
+		</div>
+	</div>
+
+	
+
+</body>

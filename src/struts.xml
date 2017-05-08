@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="default" extends="json-default" namespace="">
+		<!-- 前台主界面 -->
+		<action name="zindex" class="action.IndexAction" method="indexPage">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<!-- 跳转至最新资讯界面 -->
+		<action name="info" class="action.IndexAction" method="indexPage">
+			<result name="success">/info.jsp</result>
+		</action>
+		<!-- 跳转至课程中心界面 -->
+		<action name="cross" class="action.IndexAction" method="indexPage">
+			<result name="success">/crossBorder.jsp</result>
+		</action>
+		<!-- 跳转至拓展中心界面 -->
+		<action name="expand" class="action.IndexAction" method="indexPage">
+			<result name="success">/expand.jsp</result>
+		</action>
+		<!-- 跳转至电商培训界面 -->
+		<action name="training" class="action.IndexAction" method="indexPage">
+			<result name="success">/training.jsp</result>
+		</action>
+		<action name="train" class="action.DhnrAction">  
+            <result name="success">/trainingPage.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action> 
+		
+		<action name="findDhnrById" class="action.DhnrAction" method="findDhnrById">
+			<result name="success" type="json">
+				<param name="root">dhnrlist</param>
+			</result>
+		</action>
+	
+	
+		<!-- 后台修改导航  -->
+		<action name="dhtree" class="action.DhAction">  
+        </action> 
+		<!-- 更新导航  -->
+		<action name="updatedh" class="action.UpDhAction">  
+            <result name="error">/error.jsp</result>
+        </action> 
+    <!-- 自动跳转单页面  -->
+		<action name="dnrs" class="action.DhnrAction">  
+            <result name="success">/page.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action> 
+        <!-- 课程中心 -->
+        <action name="dnr" class="action.DhnrAction">  
+            <result name="success">/coursepage.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action> 
+        <!-- 最新资讯 -->
+         <action name="dnri" class="action.DhnrAction">  
+            <result name="success">/infopage.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action> 
+        
+        
+         <!-- 首页导航自动加载 -->
+		<action name="head" class="action.HeaderAction">  
+            <result name="error">/error.jsp</result>
+            <result name="success">/header.jsp</result>
+        </action> 
+        <action name="heads" class="action.HeaderAction">  
+            <result name="error">/error.jsp</result>
+            <result name="success">/headers.jsp</result>
+        </action> 
+        <action name="foot" class="action.HeaderAction" >
+			<result name="success">/footer.jsp</result>
+		</action>
+        <!-- 后台修改页面内容  -->
+        <action name="dnrup" class="action.DhnrUpAction">  
+            <result name="input">mg/liebiao.jsp</result>
+            <result name="success">mg/dan.jsp</result>
+            <result name="none">mg/lie.jsp</result>
+        </action> 
+        <action name="dnrin" class="action.DhnrInsertAction">  </action>
+        <!-- 登录功能 -->
+		<action name="login" class="action.UserAction">
+			<result name="ERROR" type="redirect">error.jsp</result>
+			<result name="success">/mg/mgupuser.jsp</result>
+		</action>
+		<!-- 用户管理  -->
+		<action name="people" class="action.MgusersAction">  
+            <result name="ERROR">/error.jsp</result>
+        </action> 
+         <!-- 首页查询  -->
+		<action name="dex" class="action.IndexAction">  
+            <result name="success">/dex.jsp</result>
+            <result name="input">/left.jsp</result>
+        </action> 
+       
+     </package>
+</struts>    

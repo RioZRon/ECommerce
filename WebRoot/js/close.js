@@ -1,0 +1,10 @@
+$(function(){    
+    $("#myweb-dns-a1,#myweb-dns-a2").bind("click",function(){
+        $("#cache-config").show();
+        $(".bgmh").show();
+    });
+    $("#msn-cache-close").bind("click",function(){
+        $("#cache-config").hide();
+        $(".bgmh").hide();
+    });
+});

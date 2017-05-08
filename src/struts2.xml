@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package abstract="true" extends="struts-default" name="userloginPk">
+		<interceptors>
+			<interceptor name="mylogin" class="interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="mystack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="mylogin" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mystack" />
+		<global-results>
+			<result name="user" type="dispatcher">/login.jsp</result>
+		</global-results>
+	</package>
+
+	<package name="online" namespace="/" extends="userloginPk">
+		<!-- 前台主界面 -->
+		<action name="zxindex" class="action.IndexAction" method="indexPage">
+			<result name="success">/index.jsp</result>
+		</action>
+	</package>
+
+	<package name="default" extends="json-default" namespace="">
+		<!-- 前台主界面 -->
+		<action name="zxindex" class="action.IndexAction" method="indexPage">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="findDhnrById" class="action.DhnrAction" method="findDhnrById">
+			<result name="success" type="json">
+				<param name="root">dhnrlist</param>
+			</result>
+		</action>
+
+		<action name="qtlogin" class="action.UserAction" method="qtLogin">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">zxindex</param>
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<!-- 登录功能 -->
+		<action name="login" class="action.UserAction">
+			<result name="success">/mg/mgupuser.jsp</result>
+			<result name="ERROR" type="redirect">error.jsp</result>
+		</action>
+		
+		<!-- 用户名是否存在 -->
+		<action name="isexists" class="action.UserAction" method="exists" />
+
+		<!-- 注销 -->
+		<action name="loginout" class="action.UserAction" method="loginOut">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">zxindex</param>
+			</result>
+		</action>
+
+
+		<!-- 后台修改导航 -->
+		<action name="dhtree" class="action.DhAction">
+		</action>
+		<!-- 更新导航 -->
+		<action name="updatedh" class="action.UpDhAction">
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- 自动跳转单页面 -->
+		<action name="dnr" class="action.DhnrAction">
+			<result name="success">/page.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- 首页导航自动加载 -->
+		<action name="head" class="action.HeaderAction">
+			<result name="error">/error.jsp</result>
+			<result name="success">/header.jsp</result>
+		</action>
+		<action name="foot" class="action.HeaderAction" method="executes">
+			<result name="success">/footer.jsp</result>
+		</action>
+		<!-- 后台修改页面内容 -->
+		<action name="dnrup" class="action.DhnrUpAction">
+			<result name="input">mg/liebiao.jsp</result>
+			<result name="success">mg/dan.jsp</result>
+			<result name="none">mg/lie.jsp</result>
+		</action>
+		<action name="dnrin" class="action.DhnrInsertAction">
+		</action>
+		<!-- 用户管理 -->
+		<action name="people" class="action.MgusersAction">
+			<result name="ERROR">/error.jsp</result>
+		</action>
+		<!-- 首页查询 -->
+		<action name="dex" class="action.IndexAction">
+			<result name="success">/dex.jsp</result>
+			<result name="input">/left.jsp</result>
+		</action>
+
+		<action name="dexs" class="action.IndexAction" method="executes">
+			<result name="success">/dexs.jsp</result>
+			<result name="input">/left.jsp</result>
+		</action>
+
+	</package>
+
+</struts>    
