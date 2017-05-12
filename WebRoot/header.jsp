@@ -15,7 +15,8 @@
 </head>
 
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-
+<link rel="stylesheet" type="text/css" href="css/search_cs.css" />
+<script type="text/javascript" src="js/search_js.js"></script>
 <script type="text/javascript">
 	function getMsg() {
 		$.post("isexists.action", {
@@ -94,6 +95,44 @@
 		}
 	}
 </script>
+<!-- search工具js -->
+<script type='text/javascript'>
+	function search(){
+		if(check()){
+			$.ajax({
+				url:'searchDh.action?title='+$("#search_text").val(),
+				asyn:true,
+				dataType:"json",
+				type:"post",
+				success:function(data){
+					$("#result_list").html("");
+					$("#result_list").append("<ul >");
+					$.each(data, function (i, item) { 
+						$("#result_list").append("<li><a href='dnr.action?id="+item.hid+"&did="+item.id+"'>"+item.title+"</a></li>");
+			        });  
+					$("#result_list").append("</ul >"); 
+				}
+			});
+		}
+	}
+	$(window).scroll(function(){
+		if ($(window).scrollTop() >=150){
+			$('.search_k').hide(1000);
+		}else{
+			$('.search_k').show(1000);
+		}
+	});
+	function check(){
+		var b=$("#search_text").val();
+		if(b==null||b.length==0){
+			$('.search_list').hide();
+			return false;
+		}else{
+			$('.search_list').show();
+			return true;
+		}
+	}
+</script>
 
 <body>
 	 <div class="head">
@@ -101,6 +140,26 @@
 			<div class="logo">
 				<a href="zindex"><img src="images/logo.png" /></a>
 			</div>
+			<!-- 搜索工具栏 -->
+					<div id="search_div" class="search_k" >
+						<table border="0" align="center" cellpadding="0" cellspacing="0" class="tab_search">
+			  				<tr>
+								<td>
+									<input type="text" name="q" title="Search" class="searchinput" id="search_text" onkeyup="setTimeout(search(),3000)" onkeydown="if (event.keyCode==13) {}" onblur="check();if(this.value==''){value='- 搜索从这里开始 -';$('.search_list').hide();}" onfocus="if(this.value=='- 搜索从这里开始 -'){value='';};" value="- 搜索从这里开始 -" size="10"/>
+								</td>
+								<td>
+									<input type="image" width="21" height="17" class="searchaction"  alt="Search" src="images/magglass.gif" border="0" hspace="2"/>
+								</td>
+							</tr>
+						</table>
+						<div id='result_list' class="search_list">
+							  <ul >
+								<li><a href="dnr.action?id=953">汽车维修</a></li>
+								<li><a href="dnr.action?id=953">汽车维修</a></li>
+								<li><a>汽车维修</a></li>
+							</ul>
+						</div>
+					</div>
 			<div class="top_wrap_nr">
 				<ul>
 					<li>您好！欢迎进入南拓科技电子商务课程平台！</li>

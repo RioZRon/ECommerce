@@ -34,6 +34,12 @@
 			</result>
 		</action>
 	
+		<!-- 搜索功能 -->
+		<action name="searchDh" class="action.DhnrAction" method="search">
+			<result name="success" type="json">
+				<param name="root">dhnrlist</param>
+			</result>
+		</action>
 	
 		<!-- 后台修改导航  -->
 		<action name="dhtree" class="action.DhAction">  

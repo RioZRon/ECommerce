@@ -1,5 +1,6 @@
 package action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import com.opensymphony.xwork2.*;
@@ -11,6 +12,7 @@ public class DhnrAction implements Action {
 
 	private int id;
 	private int did;
+	private String title;
 	private List<Dhnr> dhnrlist = new ArrayList<Dhnr>();
 
 	/**
@@ -30,6 +32,14 @@ public class DhnrAction implements Action {
 		return Action.SUCCESS;
 	}
 	
+	
+	public String search() throws UnsupportedEncodingException{
+		DhnrDao dao = new DhnrDao();
+		title=new String(title.getBytes("iso8859-1"),"UTF-8");//编码处理
+		dhnrlist = dao.search(title);
+		return Action.SUCCESS;
+		
+	}
 	public String execute() throws Exception {
 		try {
 			DhDao dao = new DhDao();
@@ -218,6 +228,16 @@ public class DhnrAction implements Action {
 
 	public void setDhnrlist(List<Dhnr> dhnrlist) {
 		this.dhnrlist = dhnrlist;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

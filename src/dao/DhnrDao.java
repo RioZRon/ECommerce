@@ -22,6 +22,13 @@ public class DhnrDao {
 		return list;
 	}
 	
+	public List<Dhnr> search(String title){
+		Session session = HibernateSessionFactory.getSession();
+		String hql = "select top 10* from [dzsw].[dbo].Dhnr where title like '%"+title+"%'";
+		list=session.createSQLQuery(hql).addEntity(Dhnr.class).list();
+		return list;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Dhnr> selectid(int id){
 		Session session = HibernateSessionFactory.getSession();
