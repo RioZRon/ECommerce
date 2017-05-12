@@ -39,6 +39,9 @@
 	z-index: 9999999999;
 }
 
+.search_k: {
+	display: block;
+}	
 .search_list {
 	width: auto;
 	display: none;
