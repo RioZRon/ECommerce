@@ -54,6 +54,7 @@
 			<div class="allmenu" data-pid="${map['课程中心'].id }" id="${map['课程中心'].id }">
 				<ul class="allmenu_ul">
 					<li><strong>课程分类：</strong></li>
+					
 					<li><a href="dnr.action?id=25">现代商务基础</a></li>
 					<li><a href="dnr.action?id=26">图形图像处理</a></li>
 					<li><a href="dnr.action?id=27">电子商务基础</a></li>
@@ -67,27 +68,6 @@
 			</div>
 			<script>
 			$(function() {
-				//电商培训
-				/*$.get("/ECommerce/findDhnrById",{
-						"id" : $(".allmenu").attr("id") * 1
-					},function(data) {
-						//课程分类
-						$.each(data,function(index, value) {
-							$(".allmenu_ul").append("<li><a href='dnr.action?did=@id&id=@pid'>@title</a></li>"
-								.replace("@id",value.id).replace("@pid",$(".allmenu").attr("data-pid"))
-								.replace("@title",value.title).replace("@text",value.text));
-					});
-				});
-				//视频
-				$.get("/ECommerce/findDhnrById",{
-					"id" : $(".menulist").attr("id") * 1
-				},function(data) {
-					$.each(data,function(index, value) {
-						$(".menulist_ul").append("<li><a href='dnr.action?did=@id&id=@pid'>@title</a></li>"
-							.replace("@id",value.id).replace("@pid",$(".menulist").attr("data-pid"))
-							.replace("@title",value.title).replace("@text",value.text));
-				});
-			  });*/
 				//最新推荐
 				$.get("/ECommerce/findDhnrById",{
 					"id" : $(".recommended_nr").attr("id") * 1
@@ -102,20 +82,12 @@
 			});
 			</script>
 			
-			<div class="menulist" data-pid="${map['电商培训'].id }" id="${map['电商培训'].id }">
+			<div class="menulist"  bianji="${DHlist.size() }"  data-pid="${map['电商培训'].id }" id="${map['电商培训'].id }">
 				<ul>
-					<li><a href="dnr.action?id=137"><img src="images/011.jpg" /></a><a
-						class="jsx" href="dnr.action?id=137">图形图像实战微课培训【南拓教育】</a><span>免费学习</span></li>
-					<li><a href="dnr.action?id=138"><img src="images/011.jpg" /></a><a
-						class="jsx" href="dnr.action?id=138">ps特效制做案例【南拓教育】</a><span>免费学习</span></li>
-					<li><a href="dnr.action?id=139"><img src="images/011.jpg" /></a><a
-						class="jsx" href="dnr.action?id=139">SEO优化策略【南拓教育】</a><span>免费学习</span></li>
-					<li><a href="dnr.action?id=140"><img src="images/011.jpg" /></a><a
-						class="jsx" href="dnr.action?id=140">超强网店经营教程【南拓教育】</a><span>免费学习</span></li>
-					<li><a href="dnr.action?id=141"><img src="images/011.jpg" /></a><a
-						class="jsx" href="dnr.action?id=141">淘宝开店专业培训【南拓教育】</a><span>免费学习</span></li>
-					<li><a href="dnr.action?id=142"><img src="images/011.jpg" /></a><a
-						class="jsx" href="dnr.action?id=142">网上开店美工设计实战操作培训【南拓教育】</a><span>免费学习</span></li>
+					<c:forEach items="${DHlist }" var="dh">
+						<li><a href="${dh.url }"><img src="images/011.jpg" /></a><a
+							class="jsx" href="${dh.url }">${dh.name }【南拓教育】</a><span>免费学习</span></li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>

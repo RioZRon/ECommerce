@@ -30,6 +30,13 @@ public class DhDao {
 		return map;
 	}
 
+	public List<Dh> showDSPX(){
+		Session session = HibernateSessionFactory.getSession();
+		String hql = "from Dh where pid=39";
+		List<Dh> list=session.createQuery(hql).list();
+		return list;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Dh> select(int id) {
 		Session session = HibernateSessionFactory.getSession();

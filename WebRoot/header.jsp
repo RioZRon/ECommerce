@@ -159,15 +159,6 @@
 				<ul>
 					<li>您好！欢迎进入南拓科技电子商务课程平台！</li>
 					<li class="fgx"></li>
-					<!-- <li>
-						<div class="login">
-							<a href="#" id="login_box_btn">登录</a>
-						</div>
-						<div class="registered">
-							<a href="../../paging/registered.html">注册</a>
-						</div>
-					</li>
-					<li class="fgx"></li>-->
 					<li><span class="tel">4008-520-538</span></li>
 					<li></li>
 				</ul>

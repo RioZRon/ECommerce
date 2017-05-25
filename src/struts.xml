@@ -20,7 +20,7 @@
 			<result name="success">/expand.jsp</result>
 		</action>
 		<!-- 跳转至电商培训界面 -->
-		<action name="training" class="action.IndexAction" method="indexPage">
+		<action name="training" class="action.IndexAction" method="showDSPX">
 			<result name="success">/training.jsp</result>
 		</action>
 		<action name="train" class="action.DhnrAction">  

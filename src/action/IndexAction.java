@@ -1,7 +1,14 @@
 package action;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
@@ -12,6 +19,10 @@ public class IndexAction implements Action {
 
 	private int id;
 	private int type;
+	private List<Dh> list;
+
+	HttpServletRequest req = ServletActionContext.getRequest();
+	HttpServletResponse rep = ServletActionContext.getResponse();
 
 	public String execute() throws Exception {
 		try {
@@ -35,8 +46,7 @@ public class IndexAction implements Action {
 		}
 		return Action.SUCCESS;
 	}
-	
-	
+
 	public String executes() throws Exception {
 		try {
 			if (type == 110) {
@@ -66,6 +76,15 @@ public class IndexAction implements Action {
 		return Action.SUCCESS;
 	}
 
+	// 搜索电商培训课程
+	public String showDSPX() {
+		DhDao dao = new DhDao();
+		List<Dh> list1 = dao.showDSPX();
+		req.setAttribute("DHlist", list1);
+		ActionContext.getContext().put("map", dao.findMap());
+		return Action.SUCCESS;
+	}
+
 	/*-----------------------*/
 	public int getId() {
 		return id;
@@ -81,6 +100,30 @@ public class IndexAction implements Action {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public List<Dh> getList() {
+		return list;
+	}
+
+	public void setList(List<Dh> list) {
+		this.list = list;
+	}
+
+	public HttpServletRequest getReq() {
+		return req;
+	}
+
+	public void setReq(HttpServletRequest req) {
+		this.req = req;
+	}
+
+	public HttpServletResponse getRep() {
+		return rep;
+	}
+
+	public void setRep(HttpServletResponse rep) {
+		this.rep = rep;
 	}
 
 }

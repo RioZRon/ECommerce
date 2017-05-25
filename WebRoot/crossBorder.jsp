@@ -107,7 +107,7 @@
 				<div class="kjds_gjz_l">
 					<a class="alertwh"><img src="images/ban-1.png" /></a>
 				</div>
-				<div class="kjds_gjz_rs"  data-pid="${map['跨境电商'].id }" id="${map['速卖通'].id }">
+				<div class="kjds_gjz_rs" data-pid="${map['跨境电商'].id }" id="${map['速卖通'].id }">
 					
 				</div>
 			</div>
