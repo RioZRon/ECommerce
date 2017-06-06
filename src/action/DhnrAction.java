@@ -38,8 +38,9 @@ public class DhnrAction implements Action {
 		title=new String(title.getBytes("iso8859-1"),"UTF-8");//编码处理
 		dhnrlist = dao.search(title);
 		return Action.SUCCESS;
-		
 	}
+	
+	
 	public String execute() throws Exception {
 		try {
 			DhDao dao = new DhDao();

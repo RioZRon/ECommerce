@@ -16,7 +16,6 @@
 
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/search_cs.css" />
-<script type="text/javascript" src="js/search_js.js"></script>
 <script type="text/javascript">
 	function getMsg() {
 		$.post("isexists.action", {
@@ -95,6 +94,7 @@
 		}
 	}
 </script>
+
 <!-- search工具js -->
 <script type='text/javascript'>
 	function search(){

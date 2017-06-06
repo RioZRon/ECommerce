@@ -1,9 +1,1 @@
-/META-INF/
 /action/
-/dao/
-/entity/
-/filter/
-/hibernate.cfg.xml
-/interceptor/
-/struts.xml
-/struts2.xml
