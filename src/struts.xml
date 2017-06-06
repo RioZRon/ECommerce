@@ -98,6 +98,15 @@
             <result name="success">/dex.jsp</result>
             <result name="input">/left.jsp</result>
         </action> 
-       
      </package>
+     
+     <!-- 考试系统 -->
+	<package extends="struts-default,json-default" name="testpk">
+		<action name="qaction" class="action.QuestionsAction">
+			<result name="success">/mg/addtest.jsp</result>
+			<result name="qlist" type="json">
+				<param name="root">qlist</param>
+			</result>
+		</action>
+	</package>
 </struts>    

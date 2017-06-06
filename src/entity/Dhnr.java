@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Dhnr entity. @author MyEclipse Persistence Tools
  */
@@ -18,6 +21,8 @@ public class Dhnr implements java.io.Serializable {
 	private String features;
 	private String encrypt;
 	private Integer hid;
+	private String istest;
+	private Set questionses = new HashSet(0);
 
 	// Constructors
 
@@ -33,7 +38,7 @@ public class Dhnr implements java.io.Serializable {
 	/** full constructor */
 	public Dhnr(String title, String img, String name, String time,
 			Integer count, String text, String features, String encrypt,
-			Integer hid) {
+			Integer hid, String istest, Set questionses) {
 		this.title = title;
 		this.img = img;
 		this.name = name;
@@ -43,6 +48,8 @@ public class Dhnr implements java.io.Serializable {
 		this.features = features;
 		this.encrypt = encrypt;
 		this.hid = hid;
+		this.istest = istest;
+		this.questionses = questionses;
 	}
 
 	// Property accessors
@@ -125,6 +132,22 @@ public class Dhnr implements java.io.Serializable {
 
 	public void setHid(Integer hid) {
 		this.hid = hid;
+	}
+
+	public String getIstest() {
+		return this.istest;
+	}
+
+	public void setIstest(String istest) {
+		this.istest = istest;
+	}
+
+	public Set getQuestionses() {
+		return this.questionses;
+	}
+
+	public void setQuestionses(Set questionses) {
+		this.questionses = questionses;
 	}
 
 }

@@ -23,6 +23,12 @@
 	<mapping resource="entity/Dh.hbm.xml" />
 	<mapping resource="entity/Dhnr.hbm.xml" />
 	<mapping resource="entity/Mguser.hbm.xml" />
+	<mapping resource="entity/Achievement.hbm.xml" />
+	<mapping resource="entity/Questions.hbm.xml" />
+	<mapping resource="entity/Sdanswer.hbm.xml" />
+	<mapping resource="entity/Student.hbm.xml" />
+	<mapping resource="entity/Subject.hbm.xml" />
+	<mapping resource="entity/Teacher.hbm.xml" />
 
 </session-factory>
 

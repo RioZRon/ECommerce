@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>电商平台</title>
+    <title>南拓科技课程包教学平台</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -97,11 +97,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</div>
 			<textarea id="text" name="text" style="width:700px;height:400px;visibility:hidden;">${list.text}</textarea>
 		<br />
-		<input type="button"  value="提交内容" onclick="return check()"/>
+		<input type="button"  value="提交内容" class="easyui-linkbutton" style="width: 100px;height: 30px"  onclick="return check()"/>
+		<input type="button"  value="测试题"  class="easyui-linkbutton" style="width: 100px;height: 30px;"  onclick="insert(${list.id})"/>
 		</c:forEach>
+		
 	</form>
 	
 	<script type="text/javascript">
+		function insert(hnid){
+			var contents = "<iframe name='childs' id='childs' scrolling='auto' frameborder='0'  src='qaction.action?hnid="+hnid+"' style='width:100%;height:100%;'></iframe>";  
+				if(window.parent.$("#tt").tabs("exists","")){
+					closetabs("试题管理");
+				}
+				window.parent.$("#tt").tabs('add',{
+					title:"试题管理",
+					iconCls: 'icon-edit',
+					fit:true,
+					closable:true,
+					content:contents,  
+					cache:false
+				});
+		}
 		function check(){
 			var title=$("#title").val();
 			var count=$("#count").val();
@@ -134,6 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
 			}
 		}
+		
 	</script>
   </body>
 </html>

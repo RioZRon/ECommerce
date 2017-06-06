@@ -38,7 +38,11 @@
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
 <script type="text/javascript" src="js/layer.min.js"></script>
 <script type="text/javascript" src="js/close.js"></script>
-
+<script type="text/javascript">
+		function opentest() {
+			$(".black_overlay,.white_content").fadeToggle(850);
+		}
+</script>
 </head>
 
 
@@ -55,13 +59,13 @@
 					<c:forEach var="list" items="${list}">
 
 						<div class="left_nav shadow">
-							<h2 class="havesub ${requestScope.name==list.name?'show':''}">
+							<h2 class="havesub">
 								<li id="one${list.id}" onmousemove="move(this,'${list.id}')"><a
 									id="one_${list.id}" href="${list.url}" class="adot" title="${list.name}">${list.name}</a></li>
 								<!-- href="${list.url}" -->
 							</h2>
 
-							<div class="sub2 show"
+							<div class="sub2"
 								data-name="${list.name==requestScope.name?requestScope.name:''}">
 								<s:action name="dex" executeResult="true">
 									<s:param name="id">${list.id}</s:param>
@@ -77,9 +81,6 @@
 				$(function() {
 					$(".left_nav .sub2").hide();
 					$("[data-name='${requestScope.name}']").show();
-					$(".sub2 a[data-id]").click(function(){
-						alert();
-					});
 				});
 			</script>
 
@@ -170,6 +171,9 @@
 							<c:if test="${list.img!=null||fn:length(list.img)!=0}">
 								<p style="text-align: center;">${list.text}</p>
 							</c:if>
+							<c:if test="${list.istest=='t'}">
+								<button onclick="opentest()" style="width:70px;height: 40px;background-color:#00000;border-radius:5px">开始测试</button>
+							</c:if>
 						</c:forEach>
 					</div>
 				</c:if>
@@ -177,6 +181,11 @@
 
 
 		</div>
+		<!-- 测试页面开始 -->
+		<div class="black_overlay"
+		onclick="$('.black_overlay,.white_content').fadeToggle(1000)"></div>
+		<%@include file="/testpage.jsp" %>
+	     <!-- 测试页面结束 -->
 	</div>
 	
 	<div class="scroll" id="scroll"></div>

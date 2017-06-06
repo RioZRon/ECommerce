@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>电商平台</title>
+    <title>南拓科技课程包教学平台</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			<td>缩略图:</td>
 	    			<td><input type="text" class="easyui-textbox" id="img" name="img" value="${list.img}"/>
 					<input class="easyui-linkbutton" type="button" id="insertimages" value="选择图片" style="padding: 5px;"/>
-					<a onclick="del();" style="text-decoration: none;" class="easyui-linkbutton">删除图片</a></td>
+					<a  href="javascript:0" onclick="del();" style="text-decoration: none;" class="easyui-linkbutton">删除图片</a></td>
     		</tr> 
     		<tr id="t6">
     			<td>是否公开</td>
@@ -114,10 +114,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			</c:if>
     			</td>
     		</tr>
-    		<tr id="t7">
-    			<td>导读:</td>
-    			<td><input type="text"  class="easyui-textbox" id="features" value="${list.features}" name="features" style="width: 500px;"/></td>
-    		</tr>
     		
        	</table>
     	<input type="hidden" id="id" name="id" value="${list.id}">
@@ -126,7 +122,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</div>
 			<textarea id="text" name="text" style="width:700px;height:400px;visibility:hidden;">${list.text}</textarea>
 		<br />
-		<input type="button"  value="提交内容" onclick="return check(1)"/>
+		<!-- <input type="button"  value="提交内容" onclick="return check(1)"/> -->
+		<input type="button"  value="提交内容" class="easyui-linkbutton" style="width: 100px;height: 30px"  onclick="return check()"/>
+		<input type="button"  value="测试题"  class="easyui-linkbutton" style="width: 100px;height: 30px;"  onclick="insert(${list.id})"/>
 		</c:forEach>
 		</c:if>
 		
@@ -154,17 +152,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			<td>缩略图:</td>
 	    			<td><input type="text" class="easyui-textbox" id="img" name="img"/>
 					<input class="easyui-linkbutton" type="button" id="insertimages" value="选择图片" style="padding: 5px;"/>
-					<a onclick="del();" style="text-decoration: none;" class="easyui-linkbutton">删除图片</a></td>
+					<a  href="javascript:0" onclick="del();" style="text-decoration: none;" class="easyui-linkbutton">删除图片</a></td>
     			</tr>
     			<tr id="t6">
     				<td>是否公开</td>
     				<td><input type="radio" name="encrypt" value="no" checked="checked"/>否
     				<input type="radio" name="encrypt" value="yes"/>是</td>
     			</tr>
-    			<tr id="t7">
-	    			<td>导读:</td>
-	    			<td><input type="text"  class="easyui-textbox" id="features" name="features" style="width: 500px;"/></td>
-	    		</tr>
     			
 	    	</table>
 	    	<%String hid=new String(request.getParameter("hid").getBytes("iso8859-1"),"utf-8"); %>
@@ -177,7 +171,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</c:if>
 	</form>
 	<script type="text/javascript">
-	
+	function insert(hnid){
+		var contents = "<iframe name='childs' id='childs' scrolling='auto' frameborder='0'  src='qaction.action?hnid="+hnid+"' style='width:100%;height:100%;'></iframe>";  
+			if(window.parent.$("#tt").tabs("exists","")){
+				closetabs("试题管理");
+			}
+			window.parent.$("#tt").tabs('add',{
+				title:"试题管理",
+				iconCls: 'icon-edit',
+				fit:true,
+				closable:true,
+				content:contents,  
+				cache:false
+			});
+	}
 	//删除图片
 	function del(){
 		$("#img").textbox('setValue',null);
@@ -187,7 +194,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var count=$("#count").val();
 			var time=$("#time").datebox("getValue"); 
 			var text=$("#text").val();
-			var features=$("#features").val();
 			var img=$("#img").val();
 			if(title.length==0){
 				alert("标题必须填写！");

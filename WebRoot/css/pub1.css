@@ -1,4 +1,4 @@
-.white_bg {
+f.white_bg {
 	background: #fff;
 }
 
@@ -36,12 +36,11 @@
 .left_nav h2 {
 	font-size: 20px;
 	font-weight: normal;
+	
 	background: url(../images/jia_icon.png) no-repeat center left;
-	height: 20px;
-	line-height: 20px;
+	height: 30px;
+	line-height: 30px;
 	cursor: pointer;
-	margin-top:5px;
-	margin-bottom:5px;
 	padding-left:0px; margin-left:0px; 
 }
 
@@ -49,7 +48,7 @@
 	background-position: 0 7px;
 }*/
 .left_nav h2 a { width:210px; height:30px; text-decoration: none; font-weight: normal; font-size: 13px;
-text-align: left; overflow: hidden; display:block; padding-left:16px; margin:0px;}
+text-align: left; overflow: hidden; display:block; text-indent: 16px;}
 
 .left_nav h2.on {
 	background: url(../images/jia_icon.png) no-repeat center left;
@@ -61,7 +60,7 @@ text-align: left; overflow: hidden; display:block; padding-left:16px; margin:0px
 }
 
 .sub2 {
-	margin-left: 10px;
+	margin-left: 25px;
 	display:none;
 }
 
@@ -72,8 +71,7 @@ text-align: left; overflow: hidden; display:block; padding-left:16px; margin:0px
 
 
 .sub2 a {
-	width: 190px;
-	height:30px; overflow:hidden;
+	width: 270px;
 	line-height: 30px;
 	font-size: 12px;
 	border-bottom: 1px dotted #ebebeb;

@@ -38,7 +38,11 @@
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
 <script type="text/javascript" src="js/layer.min.js"></script>
 <script type="text/javascript" src="js/close.js"></script>
-
+<%-- <script type="text/javascript">
+		function opentest() {
+			$(".black_overlay,.white_content").fadeToggle(850);
+		}
+	</script> --%>
 </head>
 
 
@@ -170,6 +174,7 @@
 							<c:if test="${list.img!=null||fn:length(list.img)!=0}">
 								<p style="text-align: center;">${list.text}</p>
 							</c:if>
+							<!-- <button onclick="opentest()" style="width:70px;height: 40px;background-color:#00000;border-radius:5px">开始测试</button> -->
 						</c:forEach>
 					</div>
 				</c:if>
@@ -177,6 +182,11 @@
 
 
 		</div>
+		<%-- <!-- 测试页面开始 -->
+		<div class="black_overlay"
+		onclick="$('.black_overlay,.white_content').fadeToggle(1000)"></div>
+		<%@include file="/testpage.jsp" %>
+	     <!-- 测试页面结束 --> --%>
 	</div>
 	
 	<div class="scroll" id="scroll"></div>

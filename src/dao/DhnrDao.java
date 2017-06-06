@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -72,6 +73,21 @@ public class DhnrDao {
 		return result;
 	}
 	
+	
+	//添加试题update
+		public void update(int id){
+			Session session = HibernateSessionFactory.getSession();
+			Transaction tx = session.beginTransaction();
+			try {
+				Dhnr dhnr = (Dhnr) session.get(Dhnr.class, id);
+				dhnr.setIstest("t");
+				session.update(dhnr);
+				tx.commit();
+			} catch (HibernateException e) {
+				tx.rollback();
+				e.printStackTrace();
+			}
+		}
 	public int deleteid(int id,HttpServletRequest request){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction trans=session.beginTransaction();
